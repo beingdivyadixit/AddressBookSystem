@@ -1,17 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Reflection.Emit;
+using System.Security.Cryptography.X509Certificates;
+using System.Transactions;
 
 namespace AddressBookSystem
 {
     internal class Program
     {
-        
         static void Main(string[] args)
-        {   // start 
+        {   // start
             Console.WriteLine("Welcome to AddressBook Program");
-           // uc 1
-            Person.EntryDetails();
-            Person.DisplayAdressBook();
+            Console.WriteLine("Enter: \n1: Ability to create a Contacts in AdressBook\n2: Ability to add a new Contact to Address Book"); // taken options of program input from user
+            int option =Convert.ToInt32(Console.ReadLine());
+            switch(option)
+            {
+                case 1:
+                    {   //UC1
+                        Console.WriteLine("Enter the Number of Contact You Wanted to make");
+                        int numContact = Convert.ToInt32(Console.ReadLine());
+                        Person entryDetails = new Person();
+                        entryDetails.EntryDetails(numContact);
+                    }
+                    break;
+                case 2:
+                    {    //UC2
+                        Console.WriteLine("Enter the Number of Contact You Wanted to make");
+                        int numContact = Convert.ToInt32(Console.ReadLine());
+                        Person entryDetails = new Person();
+                        entryDetails.EntryDetails(numContact);
+                        Person.DisplayAdressBook();
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Please Enter The Valid Option");
+                    break;
+            }
         }
     }
 }
