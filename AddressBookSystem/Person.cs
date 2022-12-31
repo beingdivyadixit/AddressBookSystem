@@ -20,12 +20,12 @@ namespace AddressBookSystem
             public string Email { get; set; }
             public static List<Person> people = new List<Person>(); // list
 
-        // constructor1
+        // default constructor
         public Person()
         {
 
         }
-        // constructor2
+        // constructor
         public Person(string FirstName, string LastName, string Address, string City, string ZipCode, string PhoneNumber, string Email)
         {
             this.FirstName = FirstName;
@@ -76,6 +76,66 @@ namespace AddressBookSystem
                 Console.WriteLine("***************************************************");
            }
 
+        }
+        // Method for editing contact details
+        public void EditContact(string name)
+        {
+            bool input = false;
+            Console.WriteLine("Enter: \n 1 for edit first name \n 2 for edit last name \n 3 for edit adress \n 4 for edit city \n 5 for edit zip code \n 6 for edit phone number \n 7 for edit email ");
+            int option = Convert.ToInt32(Console.ReadLine());
+            foreach (Person person in people)
+            {
+                if (person.FirstName == name) // if-else statement
+                {
+                    input = true;
+                    switch (option) 
+                    {
+                        case 1:
+                            Console.WriteLine("Enter Curent first name :");
+                            string currentFirstName = Convert.ToString(Console.ReadLine());
+                            person.FirstName = currentFirstName;
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter Curent last name :");
+                            string currentLastName = Convert.ToString(Console.ReadLine());
+                            person.LastName = currentLastName;
+                            break;
+                        case 3:
+                            Console.WriteLine("Enter Curent City Address :");
+                            string currentAddress = Convert.ToString(Console.ReadLine());
+                            person.Address = currentAddress;
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter Curent City :");
+                            string currentCity = Convert.ToString(Console.ReadLine());
+                            person.City = currentCity;
+                            break;
+                        case 5:
+                            Console.WriteLine("Enter Curent Zip Code :");
+                            string currentZipCode = Convert.ToString(Console.ReadLine());
+                            person.ZipCode = currentZipCode;
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter Curent Phone Number :");
+                            string currentPhoneNumber = Convert.ToString(Console.ReadLine());
+                            person.PhoneNumber = currentPhoneNumber;
+                            break;
+                        case 7:
+                            Console.WriteLine("Enter Curent Email :");
+                            string currentEmail = Convert.ToString(Console.ReadLine());
+                            person.Email = currentEmail;
+                            break;
+                        default:
+                            Console.WriteLine("Please Enter valid Option");
+                            break;
+                    }
+
+                }
+               
+            }
+            if(input==false)
+            Console.WriteLine("First name not found");
+            Person.DisplayAdressBook();  // calling method for displaying after edit
         }
     }
 
