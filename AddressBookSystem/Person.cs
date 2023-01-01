@@ -149,7 +149,7 @@ namespace AddressBookSystem
                     break;
                }
           }
-            if (input == false)
+            if (input == false) // if statement
                 Console.WriteLine("Contact not present");
         }
     }
