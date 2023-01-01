@@ -45,6 +45,20 @@ namespace AddressBookSystem
                         entryDetails.EditContact(name);
                     }
                     break;
+                case 4:
+                    {  //uc4
+                        Console.WriteLine("Enter the Number of Contact You Wanted to make");
+                        int numContact = Convert.ToInt32(Console.ReadLine());
+                        Person obj = new Person();
+                        obj.EntryDetails(numContact);
+                        Person.DisplayAdressBook();
+                        Console.WriteLine("enter the first name of contact you want to delete");
+                        string name=Convert.ToString(Console.ReadLine());
+                        obj.deleteContact(name);
+                        Person.DisplayAdressBook();
+
+                    }
+                    break;
                 default:
                     Console.WriteLine("Please Enter The Valid Option");
                     break;

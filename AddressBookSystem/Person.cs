@@ -85,7 +85,7 @@ namespace AddressBookSystem
             int option = Convert.ToInt32(Console.ReadLine());
             foreach (Person person in people)
             {
-                if (person.FirstName == name) // if-else statement
+                if (person.FirstName == name) // if statement
                 {
                     input = true;
                     switch (option) 
@@ -136,6 +136,21 @@ namespace AddressBookSystem
             if(input==false)
             Console.WriteLine("First name not found");
             Person.DisplayAdressBook();  // calling method for displaying after edit
+        }
+        public void deleteContact(string name)
+        { bool input = false;
+          foreach (Person person1 in people)
+          {
+               if (person1.FirstName == name) // if statement
+               {
+                    input = true;
+                    people.Remove(person1); // for delting 
+                    Console.WriteLine("adress book of person after remove");
+                    break;
+               }
+          }
+            if (input == false)
+                Console.WriteLine("Contact not present");
         }
     }
 
