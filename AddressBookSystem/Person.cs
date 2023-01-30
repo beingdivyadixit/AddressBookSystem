@@ -66,13 +66,27 @@ namespace AddressBookSystem
                 person.phoneNumber = Console.ReadLine();
                 Console.WriteLine("Enter your Email:");
                 person.email = Console.ReadLine();
-                people.Add(person);
+                if (people.Count > 0)
+                {
+                    var result = people.Where(p => p.firstName == firstName).ToList();
+                    if (result.Count > 0)
+                    {
+                        people.Add(person);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Dulicate Input\n************************");
+                    }
+                }
+                else
+                {
+                    people.Add(person);
+                }
             }
         }
         // method for display contact details of adress book
         public void DisplayAdressBook()
-        { 
-      
+        {
             foreach (Person person in people)
             {
                 Console.WriteLine("Displaying the person details\n");
