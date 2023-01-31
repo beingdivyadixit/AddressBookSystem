@@ -21,19 +21,16 @@ namespace AddressBookSystem
         public string zipCode { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }
-        public string addressBookName { get; set; }
-        public static List<Person> people=new List<Person>(); // list
+        public static List<Person> people; // list
         public Dictionary<string, List<Person>> contactDictionary = new Dictionary<string, List<Person>>();
-
         // default constructor
         public Person()
         {
-
+           people=new List<Person>();
         }
         // constructor with parameter
-        public Person(string adressBookName, string firstName, string lastName, string address, string city, string zipCode, string phoneNumber, string email)
+        public Person(string firstName, string lastName, string address, string city, string zipCode, string phoneNumber, string email)
         {
-            this.addressBookName = addressBookName;
             this.firstName = firstName;
             this.lastName = lastName;
             this.address = address;
@@ -66,38 +63,28 @@ namespace AddressBookSystem
                 person.phoneNumber = Console.ReadLine();
                 Console.WriteLine("Enter your Email:");
                 person.email = Console.ReadLine();
-                if (people.Count > 0)
-                {
-                    var result = people.Where(p => p.firstName == firstName).ToList();
-                    if (result.Count > 0)
-                    {
-                        people.Add(person);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Dulicate Input\n************************");
-                    }
-                }
-                else
-                {
-                    people.Add(person);
-                }
+                people.Add(person);
             }
         }
         // method for display contact details of adress book
-        public void DisplayAdressBook()
+        public void DisplayAdressBook(string adressBookName)
         {
-            foreach (Person person in people)
-            {
-                Console.WriteLine("Displaying the person details\n");
-                Console.WriteLine("First Name:" + person.firstName) ;
-                Console.WriteLine("Last Name:" + person.lastName);
-                Console.WriteLine("Adress:" + person.address);
-                Console.WriteLine("City:" + person.city);
-                Console.WriteLine("Zip Code:" + person.zipCode);
-                Console.WriteLine("Phone Number:" + person.phoneNumber);
-                Console.WriteLine("Email:" + person.email);
-                Console.WriteLine("***************************************************");
+           foreach (var key in contactDictionary.Keys)
+            { if (key == adressBookName)
+                {
+                    foreach (var val in contactDictionary[key])
+                    {
+                        Console.WriteLine("Displaying the person details\n");
+                        Console.WriteLine("First Name:" + val.firstName);
+                        Console.WriteLine("Last Name:" + val.lastName);
+                        Console.WriteLine("Adress:" + val.address);
+                        Console.WriteLine("City:" + val.city);
+                        Console.WriteLine("Zip Code:" + val.zipCode);
+                        Console.WriteLine("Phone Number:" + val.phoneNumber);
+                        Console.WriteLine("Email:" + val.email);
+                        Console.WriteLine("***************************************************");
+                    }
+                }
             }
 
         }
@@ -182,9 +169,6 @@ namespace AddressBookSystem
         }
         public void AddNewAddressBook()
         {
-            //Creating a dictionary
-            
-            Person person = new Person();
             Console.WriteLine("How many number of address books you want to add ");
             int numberOfAdreBooks = Convert.ToInt32(Console.ReadLine());
             while (numberOfAdreBooks > 0)
@@ -192,9 +176,9 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter name of the address book:");
                 string addressBookName = Console.ReadLine();
                 EntryDetails();
-                contactDictionary.Add(addressBookName,people);  // to store book name and contacts in dictionary
-                Console.WriteLine(" \n"+addressBookName);
-                DisplayAdressBook(); //to display contacts
+                contactDictionary.Add(addressBookName,people);   // to store book name and contacts in dictionary
+                Console.WriteLine("**{0}**\n",addressBookName);
+                DisplayAdressBook(addressBookName); //to display contacts
                 numberOfAdreBooks--;
             }
         }

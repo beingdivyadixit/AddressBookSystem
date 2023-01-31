@@ -13,7 +13,7 @@ namespace AddressBookSystem
         static void Main(string[] args)
         {   // start
             Console.WriteLine("Welcome to AddressBook Program");
-            Console.WriteLine("Enter: \n1: Ability to create a Contacts in AdressBook\n2: Ability to add a new Contact to Address Book\n3: Edit Contact From Adress Book\n4: Delete contact \n5: Multiple contact \n6: Refactor by using Dictionory\n7: Duplicate"); // taken options of program input from user
+            Console.WriteLine("Enter: \n1: Ability to create a Contacts in AdressBook\n2: Ability to add a new Contact to Address Book\n3: Edit Contact From Adress Book\n4: Delete contact \n5: Multiple contact \n6: Refactor by using Dictionory"); // taken options of program input from user
             int option =Convert.ToInt32(Console.ReadLine());
             switch(option)
             {
@@ -27,25 +27,25 @@ namespace AddressBookSystem
                     {    //UC2
                         Person person = new Person();
                         person.EntryDetails();
-                        person.DisplayAdressBook();
+                        person.DisplayAdressBook("AdressBook");
                     }
                     break;
                 case 3:
                     {   //UC3
                         Person person = new Person();
                         person.EntryDetails();
-                        person.DisplayAdressBook();
+                        person.DisplayAdressBook("AdressBook");
                         person.EditContact();
-                        person.DisplayAdressBook();
+                        person.DisplayAdressBook("AdressBook");
                     }
                     break;
                 case 4:
                     {  //uc4
                         Person person = new Person();
                         person.EntryDetails();
-                        person.DisplayAdressBook();
+                        person.DisplayAdressBook("AdressBook");
                         person.deleteContact();
-                        person.DisplayAdressBook();
+                        person.DisplayAdressBook("AdressBook");
 
                     }
                     break;
@@ -53,7 +53,7 @@ namespace AddressBookSystem
                     {  // UC5
                         Person person = new Person();
                         person.EntryDetails();
-                        person.DisplayAdressBook();
+                        person.DisplayAdressBook("AdressBook");
                     }
                     break;
                 case 6:
@@ -61,21 +61,6 @@ namespace AddressBookSystem
                         // UC6
                         Person person = new Person();
                         person.AddNewAddressBook();
-                    }
-                    break;
-                case 7:
-                    {
-                        //UC7
-                        Person person = new Person();
-                        person.AddNewAddressBook();
-                        Console.WriteLine("Search Contact Details");
-                        Console.WriteLine("Enter First Name");
-                        string firstName = Console.ReadLine();
-                        Console.WriteLine("Enter Last Name");
-                        string lastName = Console.ReadLine();
-                       // Person contact=person.SearchDetails(firstName, lastName);
-                        person.DisplayAdressBook();
-
                     }
                     break;
                 default:
