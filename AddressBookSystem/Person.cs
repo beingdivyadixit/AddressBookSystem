@@ -21,12 +21,13 @@ namespace AddressBookSystem
         public string zipCode { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }
-        public static List<Person> people; // list
-        public Dictionary<string, List<Person>> contactDictionary = new Dictionary<string, List<Person>>();
+        public static List<Person> people = new List<Person>();// list
+        public Dictionary<string, List<Person>> contactDictionary=new Dictionary<string, List<Person>>();
         // default constructor
         public Person()
         {
-           people=new List<Person>();
+            
+            
         }
         // constructor with parameter
         public Person(string firstName, string lastName, string address, string city, string zipCode, string phoneNumber, string email)
@@ -41,12 +42,14 @@ namespace AddressBookSystem
           
         }
         // Method for input contact details  
-        public void EntryDetails()
+        public List<Person> EntryDetails()
         {
+           
             Console.WriteLine("Enter the Number of Contact You Wanted to make");
             int numContact = Convert.ToInt32(Console.ReadLine());
             for (int i = 1; i <= numContact; i++)
             {
+                //people = new List<Person>();
                 Person person = new Person();
                 Console.WriteLine("Enter the details of Contact {0}",i); ;
                 Console.WriteLine("Enter your 1st Name:");
@@ -63,8 +66,25 @@ namespace AddressBookSystem
                 person.phoneNumber = Console.ReadLine();
                 Console.WriteLine("Enter your Email:");
                 person.email = Console.ReadLine();
-                people.Add(person);
+               // if (people.Count > 0)
+                //{
+                 //   List<Person> duplicate=people.Where(p=>p.firstName==person.firstName).ToList();
+                   //   if(duplicate.Count > 0)
+                    //  {
+                     //   Console.WriteLine("Duplicate Entery\n***********************");
+                      //}
+                      //else
+                      //{
+                       // people.Add(person);
+                      //}
+                //}
+                //else
+                //{
+                   people.Add(person);
+                //return people;
+               // }
             }
+            return people;
         }
         // method for display contact details of adress book
         public void DisplayAdressBook(string adressBookName)
@@ -175,8 +195,8 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("Enter name of the address book:");
                 string addressBookName = Console.ReadLine();
-                EntryDetails();
-                contactDictionary.Add(addressBookName,people);   // to store book name and contacts in dictionary
+                var listOfPeople= EntryDetails();
+                contactDictionary.Add(addressBookName, listOfPeople);   // to store book name and contacts in dictionary
                 Console.WriteLine("**{0}**\n",addressBookName);
                 DisplayAdressBook(addressBookName); //to display contacts
                 numberOfAdreBooks--;
